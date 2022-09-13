@@ -80,7 +80,6 @@ const SignInForm = ()=>{
                 <FormInput label="Confirm Password" type="password" name="confirmPassword" required onChange={onChangeHandler} value={confirmPassword}/>
 
                 <Button value="Sign Up" type="submit" />
-                <Button value="Sign Up" type="submit" buttonType="google"/>
             </form>
         </div>
     )
