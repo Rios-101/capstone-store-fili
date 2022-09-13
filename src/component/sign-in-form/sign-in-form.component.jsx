@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { createAuthuUserWithEmailAndPassword,creatDocumentFromAuth } from '../../utilities/firebase/firebase.utility';
 import FormInput from '../form-input/form-input.component';
+import Button from './../button/button.component';
+import "./sign-in-form.style.scss";
 
 const defaultFormField = {
     displayName: "",
@@ -54,8 +56,9 @@ const SignInForm = ()=>{
     }
 
     return (
-        <div>
-            <h1>Sign Up With Yours Email and Password</h1>
+        <div className="sign-up-container">
+            <h2>Don't have an account?</h2>
+            <span>Sign Up With Yours Email and Password</span>
 
             <form onSubmit={submitHandler}>
                 {/* <label>User Name</label>
@@ -76,7 +79,8 @@ const SignInForm = ()=>{
                 <input type="password" name="confirmPassword" required onChange={onChangeHandler} value={confirmPassword}/> */}
                 <FormInput label="Confirm Password" type="password" name="confirmPassword" required onChange={onChangeHandler} value={confirmPassword}/>
 
-                <button type="submit">Sign Up</button>
+                <Button value="Sign Up" type="submit" />
+                <Button value="Sign Up" type="submit" buttonType="google"/>
             </form>
         </div>
     )
