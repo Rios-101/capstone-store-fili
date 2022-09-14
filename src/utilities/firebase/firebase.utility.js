@@ -36,6 +36,7 @@ export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
 export const signInWithUserEmailAndPassword = (email, password) =>{
+  if(!email || !password) return;
   return signInWithEmailAndPassword(auth, email, password)
 }
 

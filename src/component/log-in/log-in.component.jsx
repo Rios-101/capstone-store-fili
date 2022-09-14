@@ -22,9 +22,13 @@ const LogIn = ()=>{
     }
 
     const logGoogleUser = async ()=>{
-        const {user} = await signInWithGooglePopup()
-        const userDocRef =await creatDocumentFromAuth(user) 
-         console.log(userDocRef);
+        try{
+            const {user} = await signInWithGooglePopup()
+            const userDocRef =await creatDocumentFromAuth(user) 
+            console.log(userDocRef);
+        }catch(err){
+            console.log(err);
+        }
     }
 
     const logEmailUser = async (event)=>{
@@ -52,7 +56,7 @@ const LogIn = ()=>{
                 <FormInput label="Password" type="password" name="password" required onChange={onChangeHandler} value={password}/>
                 <div className="logIn">
                 <Button  value="Sign In" type="submit" />
-                <Button onClick={logGoogleUser} value="Sign In With Google" type="submit"  buttonType="google"/>
+                <Button onClick={logGoogleUser} value="Sign In With Google" type="button"  buttonType="google"/>
                 </div>
             </form>
         </div>
