@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import {signInWithGooglePopup,creatDocumentFromAuth,signInWithUserEmailAndPassword} from "../../utilities/firebase/firebase.utility"
 import "../log-in/log-in.style.scss"
+import { UserContext } from '../../context/user.context';
 
 
 const signInInput = {
@@ -15,7 +16,12 @@ const LogIn = ()=>{
     const [input, setInput] = useState(signInInput)
     const {email, password} = input
 
-    console.log(input);
+    const {setCurrentUser} = useContext(UserContext)
+
+    // console.log(input);
+
+    const resetInput = ()=> setInput(signInInput)
+    
     const onChangeHandler = (event)=>{
         const {name,value} = event.target
         setInput({...input, [name]:value})
@@ -24,6 +30,7 @@ const LogIn = ()=>{
     const logGoogleUser = async ()=>{
         try{
             const {user} = await signInWithGooglePopup()
+            setCurrentUser(user)
             const userDocRef =await creatDocumentFromAuth(user) 
             console.log(userDocRef);
         }catch(err){
@@ -38,7 +45,9 @@ const LogIn = ()=>{
         try{
             const {user} = await signInWithUserEmailAndPassword(email, password)
             
+            setCurrentUser(user)
             const userDocRef =await creatDocumentFromAuth(user)
+            resetInput()
             console.log(userDocRef);
 
         }catch(err){
