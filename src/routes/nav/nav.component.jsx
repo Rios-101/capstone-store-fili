@@ -8,12 +8,11 @@ import "./nav.style.scss"
 
 const Nav = () => {
 
-   const {currentUser,setCurrentUser} = useContext(UserContext)
+   const {currentUser} = useContext(UserContext)
    // console.log(currentUser);
 
    const signOutHandler =async ()=>{
-      const res = await signOutUser();
-      res === undefined ? setCurrentUser(null): console.log("Something is wrong");
+       await signOutUser();
    }
 
    return (

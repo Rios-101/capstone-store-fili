@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import {signInWithGooglePopup,creatDocumentFromAuth,signInWithUserEmailAndPassword} from "../../utilities/firebase/firebase.utility"
 import "../log-in/log-in.style.scss"
-import { UserContext } from '../../context/user.context';
+// import { UserContext } from '../../context/user.context';
 
 
 const signInInput = {
@@ -16,7 +16,7 @@ const LogIn = ()=>{
     const [input, setInput] = useState(signInInput)
     const {email, password} = input
 
-    const {setCurrentUser} = useContext(UserContext)
+    // const {setCurrentUser} = useContext(UserContext)
 
     // console.log(input);
 
@@ -29,10 +29,11 @@ const LogIn = ()=>{
 
     const logGoogleUser = async ()=>{
         try{
-            const {user} = await signInWithGooglePopup()
-            setCurrentUser(user)
-            const userDocRef =await creatDocumentFromAuth(user) 
-            console.log(userDocRef);
+            await signInWithGooglePopup();
+            // const {user} = await signInWithGooglePopup()
+            // setCurrentUser(user)
+            // const userDocRef =await creatDocumentFromAuth(user) note:code 33 - 36 has been moved to user.context to uptimize our code
+            // console.log(userDocRef);
         }catch(err){
             console.log(err);
         }
@@ -45,7 +46,7 @@ const LogIn = ()=>{
         try{
             const {user} = await signInWithUserEmailAndPassword(email, password)
             
-            setCurrentUser(user)
+            // setCurrentUser(user)
             const userDocRef =await creatDocumentFromAuth(user)
             resetInput()
             console.log(userDocRef);
