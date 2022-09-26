@@ -1,14 +1,17 @@
 import { useContext } from "react"
-import { IconContext } from "../../context/icon.context"
+import { Link } from "react-router-dom"
+import { cartContext } from "../../context/cart.context"
 import Button from "../button/button.component"
+import CartItem from "../cart-item/cart-item.component"
 import "./cart-dropdown.style.scss"
+
 
 
 const CartDropdown = ()=>{
 
-   const { isCartOpen } = useContext(IconContext);
+   const { isCartOpen,setIsCartOpen, cartItem } = useContext(cartContext);
 
-
+   const toggle = ()=> setIsCartOpen(false)
 
    return (
       <div
@@ -16,8 +19,14 @@ const CartDropdown = ()=>{
             isCartOpen ? null : "notDisplay"
          }`}
       >
-         <div />
-         <Button value={"GO TO CHECKOUT"} />
+         <div className="cart-items">
+            {cartItem.map((item) => {
+               return <CartItem key={item.id} cartItem={item} />;
+            })}
+         </div>
+         <Link to="/checkOut">
+            <Button onClick={toggle} value={"GO TO CHECKOUT"} />
+         </Link>
       </div>
    );
 }

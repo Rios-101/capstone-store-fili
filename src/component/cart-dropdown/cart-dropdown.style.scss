@@ -20,14 +20,15 @@
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 
   button {
     margin-top: auto;
-    font-size: 13px;
+    font-size: .75rem;
   }
 }
+
 
 .notDisplay{
    display: none;

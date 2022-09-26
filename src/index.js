@@ -5,7 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/user.context";
 import { ProductProvider } from "./context/product.context";
-import { IconProvider } from "./context/icon.context";
+import { IconProvider } from "./context/cart.context";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
