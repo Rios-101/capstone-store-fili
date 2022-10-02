@@ -17,7 +17,7 @@ const CartIcon = ()=>{
          setIsCartOpen(false);
       }
 
-      console.log(isCartOpen);
+      // console.log(isCartOpen);
     }
 
    // const quantity = cartItem.map(e=> e.quantity)

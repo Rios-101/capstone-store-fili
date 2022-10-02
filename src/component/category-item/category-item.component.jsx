@@ -1,4 +1,6 @@
 import "./category-item.styles.scss"
+import { Link } from "react-router-dom";
+
 
 const CategoryItem = ({imageUrl,title})=>{
    return (
@@ -8,11 +10,14 @@ const CategoryItem = ({imageUrl,title})=>{
             style={{ background: `url(${imageUrl})` }}
          />
          <div className="category-body-container">
-            <h2>{title}</h2>
-            <p>Shop Now</p>
+            <Link to={`/shop/${title.toLowerCase()}`}>
+                  <h2>{title}</h2>
+                  <p>Shop Now</p>
+            </Link>
          </div>
       </div>
    );
 }
 
 export default CategoryItem
+

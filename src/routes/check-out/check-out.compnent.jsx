@@ -40,7 +40,7 @@ const CheckOut = ()=>{
                />
             );
          })}
-         <span className="total">Total: ${total}</span>
+         <span className="total">{total === 0 ? "": `Total: $${total}`}</span>
       </div>
    );
 }

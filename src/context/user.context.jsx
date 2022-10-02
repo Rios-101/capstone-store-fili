@@ -21,7 +21,7 @@ export const UserProvider = ({children})=>{
          creatDocumentFromAuth(user); 
       }
       setCurrentUser(user)
-      console.log(user);
+      // console.log(user);
    } ) 
    return response
    },[])

@@ -4,20 +4,20 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/user.context";
-import { ProductProvider } from "./context/product.context";
 import { IconProvider } from "./context/cart.context";
 import reportWebVitals from "./reportWebVitals";
+import { CollectionProvider } from "./context/collection.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
    <React.StrictMode>
       <BrowserRouter>
          <UserProvider>
-            <ProductProvider>
+            <CollectionProvider>
                <IconProvider>
                   <App />
                </IconProvider>
-            </ProductProvider>
+            </CollectionProvider>
          </UserProvider>
       </BrowserRouter>
    </React.StrictMode>

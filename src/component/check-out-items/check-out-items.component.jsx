@@ -54,7 +54,7 @@ const CheckOutItems = ({product,cartItem})=>{
                </span>
             </div>
          </span>
-         <span className="price">{price}</span>
+         <span className="price">{`$${price}`}</span>
          <div className="remove-button" onClick={remove}>
             <i class="fas fa-times"></i>
          </div>

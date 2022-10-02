@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc,collection,writeBatch,query,getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBha8YurCO4nli4gjANWao5uwxqIHYba1c",
@@ -75,3 +75,33 @@ export const signOutUser =async ()=>{
 }
 
 export const onAuthStateChangedListener = (callback)=> onAuthStateChanged(auth,callback)
+
+// export database to firebase
+export const addCollectionAndDocument = async (collectionName, objectsToAdd)=>{
+  const findCollection = collection(db,collectionName) //Note the findcollection will automatically create a new collection if the collection u are looking for is not in the db. i.e => if u are looking for gamescollection in the datbase and in your database there is no game collection it will automatically create a new game collection for u in the database. so the findCollection also dobble down has the createCollection
+
+  // for use to upload to the data base we will first need to create a batch. this will make use be able to creat,read,upload and delete in the dat base
+  const batch = writeBatch(db)
+  objectsToAdd.forEach((object)=>{
+    const docRef = doc(findCollection,object.title.toLowerCase())
+    batch.set(docRef,object)
+  })
+
+  await batch.commit()
+  console.log("done");
+}
+
+// get data from database in firebase
+export const getCollectionAndDocument = async () => {
+  const findCollection = collection(db,"collection")
+  const q = query(findCollection)
+
+  const querySnopshot = await getDocs(q)
+  const collectionMap = querySnopshot.docs.reduce((acc,docSnapshot)=>{
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc
+  },{})
+
+  return collectionMap
+};
