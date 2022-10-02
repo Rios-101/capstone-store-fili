@@ -66,7 +66,7 @@ const LogIn = ()=>{
                 <FormInput label="Password" type="password" name="password" required onChange={onChangeHandler} value={password}/>
                 <div className="logIn">
                 <Button  value="Sign In" type="submit" />
-                <Button onClick={logGoogleUser} value="Sign In With Google" type="button"  buttonType="google"/>
+                <Button onClick={logGoogleUser} value="Google Sign In" type="button"  buttonType="google"/>
                 </div>
             </form>
         </div>
